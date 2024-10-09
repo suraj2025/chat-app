@@ -1,0 +1,17 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "client/build/**/*",  // Serve the frontend (React build)
+      "use": "@vercel/static"
+    },
+    {
+      "src": "index.js",           // Serve the backend (Node.js API)
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    { "src": "/api/(.*)", "dest": "/index.js" },  // Handle API requests
+    { "src": "/(.*)", "dest": "/client/build/index.html" }  // Serve React app
+  ]
+}
